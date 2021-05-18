@@ -8,6 +8,10 @@ public class WorldTileMap : MonoBehaviour
 
     public TileType[] tileTypes;
 
+    public GameObject enviromentParent;
+
+    public List<Tile> tiles = new List<Tile>();
+
     int[,] tileArray;
 
     int mapSizeX = 10;
@@ -62,11 +66,12 @@ public class WorldTileMap : MonoBehaviour
 
                 // Instanstiate Prefab
                 GameObject go = (GameObject)Instantiate(tt.tilePrefab, new Vector3(x, 0, y), Quaternion.identity);
-
+                go.transform.parent = enviromentParent.transform;
                 Tile t = go.GetComponent<Tile>();
                 t.xPos = x;
                 t.yPos = y;
-                
+                tiles.Add(t);
+                                    
             }
         }
     }

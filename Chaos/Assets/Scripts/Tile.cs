@@ -9,6 +9,8 @@ public class Tile : MonoBehaviour
     public int xPos;
     public int yPos;
 
+    public bool hasPlayer = false;
+
     // Start is called before the first frame update
     void Start()
     {
