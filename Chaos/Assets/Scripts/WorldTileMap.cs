@@ -14,8 +14,8 @@ public class WorldTileMap : MonoBehaviour
 
     int[,] tileArray;
 
-    int mapSizeX = 10;
-    int mapSizeY = 10;
+    public int mapSizeX = 10;
+    public int mapSizeY = 10;
 
     // Start is called before the first frame update
     void Start()
