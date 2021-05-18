@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -13,6 +14,17 @@ public class Player : MonoBehaviour
     [SerializeField]
     bool endOfTurn;
 
+    public Slider healthSlider;
+    public Slider actionPointsSlider;
+
+    float maxActionPoints = 3f;
+    float maxHealth = 100f;
+
+    float health;
+    float actionPoints;
+
+    //public Button resetTurn;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,49 +34,91 @@ public class Player : MonoBehaviour
         playerXPos = 1;
         playerYPos = 1;
 
+        health = maxHealth;
+        actionPoints = maxActionPoints;
+
+
+        healthSlider.maxValue = maxHealth/maxHealth;
+        actionPointsSlider.maxValue = maxActionPoints/maxActionPoints;
+
+        healthSlider.value = health / maxHealth;
+        actionPointsSlider.value = actionPoints / maxActionPoints;
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Keypad8))
+        if (endOfTurn != true)
         {
-            transform.Translate(Vector3.forward);
-            playerXPos = (int)transform.position.x;
-            playerYPos = (int)transform.position.z;
-            endOfTurn = true;
+            if (Input.GetKeyUp(KeyCode.Keypad8))
+            {
+                transform.Translate(Vector3.forward);
+                playerXPos = (int)transform.position.x;
+                playerYPos = (int)transform.position.z;
+                actionPoints--;
 
-            UpdateTiles();
-        }
-        if (Input.GetKeyUp(KeyCode.Keypad2))
-        {
-            transform.Translate(Vector3.back);
-            playerXPos = (int)transform.position.x;
-            playerYPos = (int)transform.position.z;
-            endOfTurn = true;
-            UpdateTiles();
-        }
-        if (Input.GetKeyUp(KeyCode.Keypad4))
-        {
-            transform.Translate(Vector3.left);
-            playerXPos = (int)transform.position.x;
-            playerYPos = (int)transform.position.z;
-            endOfTurn = true;
-            UpdateTiles();
-        }
-        if (Input.GetKeyUp(KeyCode.Keypad6))
-        {
-            transform.Translate(Vector3.right);
-            playerXPos = (int)transform.position.x;
-            playerYPos = (int)transform.position.z;
-            endOfTurn = true;
-            UpdateTiles();
-        }
+                UpdateUI();
 
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            endOfTurn = false;
+                if (actionPoints == 0)
+                {
+                    endOfTurn = true;
+                }
+
+                UpdateTiles();
+            }
+            if (Input.GetKeyUp(KeyCode.Keypad2))
+            {
+                transform.Translate(Vector3.back);
+                playerXPos = (int)transform.position.x;
+                playerYPos = (int)transform.position.z;
+                actionPoints--;
+
+                UpdateUI();
+
+                if (actionPoints == 0)
+                {
+                    endOfTurn = true;
+                }
+                UpdateTiles();
+            }
+            if (Input.GetKeyUp(KeyCode.Keypad4))
+            {
+                transform.Translate(Vector3.left);
+                playerXPos = (int)transform.position.x;
+                playerYPos = (int)transform.position.z;
+                actionPoints--;
+
+                UpdateUI();
+
+                if (actionPoints == 0)
+                {
+                    endOfTurn = true;
+                }
+
+                UpdateTiles();
+            }
+            if (Input.GetKeyUp(KeyCode.Keypad6))
+            {
+                transform.Translate(Vector3.right);
+                playerXPos = (int)transform.position.x;
+                playerYPos = (int)transform.position.z;
+                actionPoints--;
+
+                UpdateUI();
+
+                if (actionPoints == 0)
+                {
+                    endOfTurn = true;
+                }
+
+                UpdateTiles();
+            }
+
         }
+        
+
     }
 
     Tile getTile(int x, int y)
@@ -101,5 +155,17 @@ public class Player : MonoBehaviour
             }
         }
 
+    }
+
+    public void ResetTurn()
+    {
+        actionPoints = maxActionPoints;
+        UpdateUI();
+        endOfTurn = false;
+    }
+
+    void UpdateUI()
+    {
+        actionPointsSlider.value = actionPoints / maxActionPoints;
     }
 }
