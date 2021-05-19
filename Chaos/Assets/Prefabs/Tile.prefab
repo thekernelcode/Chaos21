@@ -78,6 +78,8 @@ MonoBehaviour:
   worldTileMap: {fileID: 0}
   xPos: 0
   yPos: 0
+  hasPlayer: 0
+  isWalkable: 1
 --- !u!1001 &4601338168334127845
 PrefabInstance:
   m_ObjectHideFlags: 0

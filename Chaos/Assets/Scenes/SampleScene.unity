@@ -335,7 +335,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
 --- !u!1 &350568322
 GameObject:
@@ -1535,7 +1535,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1151897272
 GameObject:
@@ -1549,6 +1549,7 @@ GameObject:
   - component: {fileID: 1151897276}
   - component: {fileID: 1151897275}
   - component: {fileID: 1151897274}
+  - component: {fileID: 1151897277}
   m_Layer: 5
   m_Name: Spell
   m_TagString: Untagged
@@ -1619,7 +1620,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1151897275}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1151897277}
+        m_TargetAssemblyTypeName: ButtonUI, Assembly-CSharp
+        m_MethodName: spawnMonster
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1151897275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1658,6 +1671,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1151897272}
   m_CullTransparentMesh: 1
+--- !u!114 &1151897277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151897272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf9a6e50fd9510847bd7f8971c3c7864, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spellImage: {fileID: 0}
 --- !u!1 &1173951969
 GameObject:
   m_ObjectHideFlags: 0
@@ -1670,6 +1696,7 @@ GameObject:
   - component: {fileID: 1173951973}
   - component: {fileID: 1173951972}
   - component: {fileID: 1173951971}
+  - component: {fileID: 1173951974}
   m_Layer: 5
   m_Name: Spell (1)
   m_TagString: Untagged
@@ -1740,7 +1767,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1173951972}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1173951974}
+        m_TargetAssemblyTypeName: ButtonUI, Assembly-CSharp
+        m_MethodName: spawnMonster
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1173951972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1779,6 +1818,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1173951969}
   m_CullTransparentMesh: 1
+--- !u!114 &1173951974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173951969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf9a6e50fd9510847bd7f8971c3c7864, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spellImage: {fileID: 0}
 --- !u!1 &1181431683
 GameObject:
   m_ObjectHideFlags: 0
@@ -1907,7 +1959,7 @@ Transform:
   m_Children:
   - {fileID: 2118508025}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1278985996
 GameObject:
@@ -2305,9 +2357,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2113051536}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: ResetTurn
+      - m_Target: {fileID: 1509432608}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: EndPlayerTurn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2634,6 +2686,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1508765596}
   m_CullTransparentMesh: 1
+--- !u!1 &1509432607
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1509432609}
+  - component: {fileID: 1509432608}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1509432608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1509432607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccf32d169c838b341a58f54dbd63956b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1509432609
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1509432607}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1526980365
 GameObject:
   m_ObjectHideFlags: 0
@@ -2725,7 +2820,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 45, y: 130, z: 90}
 --- !u!1 &1554726353
 GameObject:
@@ -2930,7 +3025,7 @@ RectTransform:
   - {fileID: 1410117341}
   - {fileID: 1861450112}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3612,18 +3707,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &2113051536 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2809326386429193989, guid: 5c0afa589c20c39499765059cefeea4c,
-    type: 3}
-  m_PrefabInstance: {fileID: 6548065276670307493}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cba0215a64efd314ba4b46857b615e33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2118508024
 GameObject:
   m_ObjectHideFlags: 0
@@ -3862,18 +3945,45 @@ PrefabInstance:
       objectReference: {fileID: 1410117342}
     - target: {fileID: 2809326386429193989, guid: 5c0afa589c20c39499765059cefeea4c,
         type: 3}
+      propertyPath: spellBook
+      value: 
+      objectReference: {fileID: 2103125428}
+    - target: {fileID: 2809326386429193989, guid: 5c0afa589c20c39499765059cefeea4c,
+        type: 3}
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 2020450769}
     - target: {fileID: 2809326386429193989, guid: 5c0afa589c20c39499765059cefeea4c,
         type: 3}
+      propertyPath: spells.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2809326386429193989, guid: 5c0afa589c20c39499765059cefeea4c,
+        type: 3}
       propertyPath: actionPointsSlider
       value: 
       objectReference: {fileID: 792893019}
+    - target: {fileID: 2809326386429193989, guid: 5c0afa589c20c39499765059cefeea4c,
+        type: 3}
+      propertyPath: castableMonsters.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2809326386429193989, guid: 5c0afa589c20c39499765059cefeea4c,
+        type: 3}
+      propertyPath: castableMonsters.Array.data[0]
+      value: 
+      objectReference: {fileID: 7845537345611869819, guid: 3f64008d9d566c748a920ffafe7f6a59,
+        type: 3}
+    - target: {fileID: 2809326386429193989, guid: 5c0afa589c20c39499765059cefeea4c,
+        type: 3}
+      propertyPath: castableMonsters.Array.data[1]
+      value: 
+      objectReference: {fileID: 7845537345611869819, guid: fe54408ce5a044042b2d29538a176ffe,
+        type: 3}
     - target: {fileID: 6548065278343261560, guid: 5c0afa589c20c39499765059cefeea4c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6548065278343261560, guid: 5c0afa589c20c39499765059cefeea4c,
         type: 3}

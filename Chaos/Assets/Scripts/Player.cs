@@ -6,30 +6,31 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     public WorldTileMap worldTileMap;
+    GameManager gameManager;
+    SpellBook spellBook;
 
-    [SerializeField]
-    int playerXPos;
-    [SerializeField]
-    int playerYPos;
-    [SerializeField]
-    bool endOfTurn;
+    public int playerXPos;
+    public int playerYPos;
+    public bool endOfTurn;
 
     public Slider healthSlider;
     public Slider actionPointsSlider;
 
-    float maxActionPoints = 3f;
-    float maxHealth = 100f;
+    public float maxActionPoints = 3f;
+    public float maxHealth = 100f;
 
-    float health;
-    float actionPoints;
+    public float health;
+    public float actionPoints;
 
-    //public Button resetTurn;
+    public List<GameObject> castableMonsters = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
     {
         // Player needs to know what world it is in.
         worldTileMap = FindObjectOfType<WorldTileMap>();
+        gameManager = FindObjectOfType<GameManager>();
+        spellBook = FindObjectOfType<SpellBook>();
 
         playerXPos = 1;
         playerYPos = 1;
@@ -54,118 +55,89 @@ public class Player : MonoBehaviour
         {
             if (Input.GetKeyUp(KeyCode.Keypad8))
             {
-                transform.Translate(Vector3.forward);
-                playerXPos = (int)transform.position.x;
-                playerYPos = (int)transform.position.z;
-                actionPoints--;
-
-                UpdateUI();
-
-                if (actionPoints == 0)
+                if (worldTileMap.getTile(playerXPos, playerYPos + 1).isWalkable == true)
                 {
-                    endOfTurn = true;
-                }
+                    transform.Translate(Vector3.forward);
+                    playerXPos = (int)transform.position.x;
+                    playerYPos = (int)transform.position.z;
+                    actionPoints--;
 
-                UpdateTiles();
+                    if (actionPoints == 0)
+                    {
+                        endOfTurn = true;
+                    }
+                }
+                else
+                {
+                    Debug.Log("Can't walk here, there's a wall, dummy!");
+                }
             }
             if (Input.GetKeyUp(KeyCode.Keypad2))
             {
-                transform.Translate(Vector3.back);
-                playerXPos = (int)transform.position.x;
-                playerYPos = (int)transform.position.z;
-                actionPoints--;
-
-                UpdateUI();
-
-                if (actionPoints == 0)
+                if (worldTileMap.getTile(playerXPos, playerYPos - 1).isWalkable == true)
                 {
-                    endOfTurn = true;
+                    transform.Translate(Vector3.back);
+                    playerXPos = (int)transform.position.x;
+                    playerYPos = (int)transform.position.z;
+                    actionPoints--;
+
+                    if (actionPoints == 0)
+                    {
+                        endOfTurn = true;
+                    }
                 }
-                UpdateTiles();
+                else
+                {
+                    Debug.Log("Can't walk here, there's a wall, dummy!");
+                }
             }
             if (Input.GetKeyUp(KeyCode.Keypad4))
             {
-                transform.Translate(Vector3.left);
-                playerXPos = (int)transform.position.x;
-                playerYPos = (int)transform.position.z;
-                actionPoints--;
-
-                UpdateUI();
-
-                if (actionPoints == 0)
+                if (worldTileMap.getTile(playerXPos - 1, playerYPos).isWalkable == true)
                 {
-                    endOfTurn = true;
-                }
+                    transform.Translate(Vector3.left);
+                    playerXPos = (int)transform.position.x;
+                    playerYPos = (int)transform.position.z;
+                    actionPoints--;
 
-                UpdateTiles();
+                    if (actionPoints == 0)
+                    {
+                        endOfTurn = true;
+                    }
+                }
+                else
+                {
+                    Debug.Log("Can't walk here, there's a wall, dummy!");
+                }
             }
             if (Input.GetKeyUp(KeyCode.Keypad6))
             {
-                transform.Translate(Vector3.right);
-                playerXPos = (int)transform.position.x;
-                playerYPos = (int)transform.position.z;
-                actionPoints--;
-
-                UpdateUI();
-
-                if (actionPoints == 0)
+                if (worldTileMap.getTile(playerXPos + 1, playerYPos).isWalkable == true)
                 {
-                    endOfTurn = true;
-                }
+                    transform.Translate(Vector3.right);
+                    playerXPos = (int)transform.position.x;
+                    playerYPos = (int)transform.position.z;
+                    actionPoints--;
 
-                UpdateTiles();
-            }
-
-        }
-        
-
-    }
-
-    Tile getTile(int x, int y)
-    {
-        foreach (Tile tile in worldTileMap.tiles)
-        {
-            if (tile.xPos == x && tile.yPos == y)
-            {
-                return tile;
-            }
-        }
-
-        return null;
-    }
-
-    void UpdateTiles()
-    {
-        if (endOfTurn)
-        {
-            for (int y = 0; y < worldTileMap.mapSizeY; y++)
-            {
-                for (int x = 0; x < worldTileMap.mapSizeX; x++)
-                {
-                    Tile t = getTile(x, y);
-                    if (t.xPos == playerXPos && t.yPos == playerYPos)
+                    if (actionPoints == 0)
                     {
-                        t.hasPlayer = true;
-                    }
-                    else
-                    {
-                        t.hasPlayer = false;
+                        endOfTurn = true;
                     }
                 }
+                else
+                {
+                    Debug.Log("Can't walk here, there's a wall, dummy!");
+                }
             }
+
         }
 
+
+        gameManager.UpdateUI();
+        gameManager.UpdateTiles();
+
     }
 
-    public void ResetTurn()
-    {
-        actionPoints = maxActionPoints;
-        UpdateUI();
-        endOfTurn = false;
-    }
+    
 
-    void UpdateUI()
-    {
-        actionPointsSlider.value = actionPoints / maxActionPoints;
-    }
 }

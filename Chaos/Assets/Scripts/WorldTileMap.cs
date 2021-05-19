@@ -40,8 +40,9 @@ public class WorldTileMap : MonoBehaviour
         {
             for (int x = 0; x < mapSizeX; x++)
             {
+                //TODO Make it so walls are hidden when camera can't see units behind.  For now, just disabled the front wall
                 // Define walls tiles
-                if (x == 0 || x == mapSizeX - 1 || y == 0 || y == mapSizeY - 1)
+                if (x == 0 || x == mapSizeX - 1 /*|| y == 0 */ || y == mapSizeY - 1)
                 {
                     tileArray[x, y] = 0;
                 }
@@ -74,6 +75,21 @@ public class WorldTileMap : MonoBehaviour
                                     
             }
         }
+    }
+
+
+
+    public Tile getTile(int x, int y)
+    {
+        foreach (Tile tile in tiles)
+        {
+            if (tile.xPos == x && tile.yPos == y)
+            {
+                return tile;
+            }
+        }
+
+        return null;
     }
 
 }

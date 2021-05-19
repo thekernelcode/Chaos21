@@ -11,6 +11,9 @@ public class Tile : MonoBehaviour
 
     public bool hasPlayer = false;
 
+    public bool isWalkable;
+
+
     // Start is called before the first frame update
     void Start()
     {

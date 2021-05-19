@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1309471779422675758}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.2774258, y: -3.0587492, z: -0.13613415}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 303027641853805075}
@@ -47,6 +47,7 @@ MonoBehaviour:
   worldTileMap: {fileID: 0}
   xPos: 0
   yPos: 0
+  hasPlayer: 0
 --- !u!1 &7280291556773269157
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,7 +99,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 5abe01994b2518a42bb0bf0bb26a1dd1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5abe01994b2518a42bb0bf0bb26a1dd1,
         type: 3}
