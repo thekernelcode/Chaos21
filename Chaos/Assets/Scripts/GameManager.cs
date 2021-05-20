@@ -7,7 +7,9 @@ public class GameManager : MonoBehaviour
     WorldTileMap worldTileMap;
     Player player;
 
-    int turnNumber;
+    public GameObject activeUnit;
+
+    public int turnNumber;
 
     // Start is called before the first frame update
     void Start()
@@ -19,23 +21,31 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetMouseButtonUp(0))
+        {
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
+            if (Physics.Raycast(ray, out hit))
+            {
+                activeUnit = hit.transform.gameObject;
+            }
+        }
     }
 
-    public void EndPlayerTurn()
+    public void EndTurn()
     {
         turnNumber++;
-        player.actionPoints = player.maxActionPoints;
+        activeUnit.GetComponent<Unit>().actionPoints = activeUnit.GetComponent<Unit>().maxActionPoints;
         UpdateUI();
 
-
-
-        player.endOfTurn = false;
+        activeUnit.GetComponent<Unit>().endOfTurn = false;
     }
 
     public void UpdateUI()
     {
-        player.actionPointsSlider.value = player.actionPoints / player.maxActionPoints;
+        // TODO Add heatlth and other stats
+       activeUnit.GetComponent<Unit>().actionPointsSlider.value = activeUnit.GetComponent<Unit>().actionPoints / activeUnit.GetComponent<Unit>().maxActionPoints;
     }
 
     public void UpdateTiles()
@@ -45,13 +55,13 @@ public class GameManager : MonoBehaviour
                 for (int x = 0; x < worldTileMap.mapSizeX; x++)
                 {
                     Tile t = worldTileMap.getTile(x, y);
-                    if (t.xPos == player.playerXPos && t.yPos == player.playerYPos)
+                    if (t.xPos == activeUnit.GetComponent<Unit>().unitXPos && t.yPos == activeUnit.GetComponent<Unit>().unitYPos)
                     {
-                        t.hasPlayer = true;
+                        t.hasUnit = true;
                     }
                     else
                     {
-                        t.hasPlayer = false;
+                        t.hasUnit = false;
                     }
                 }
             }

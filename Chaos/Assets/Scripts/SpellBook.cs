@@ -32,6 +32,6 @@ public class SpellBook : MonoBehaviour
     public void spawnMonster()
     {
         GameObject go = player.castableMonsters[transform.GetSiblingIndex()];
-        Instantiate(go, new Vector3(player.playerXPos + 1, 1, player.playerYPos + 1), Quaternion.identity);
+        Instantiate(go, new Vector3(player.unitXPos + 1, 1, player.unitYPos + 1), Quaternion.identity);
     }
 }
