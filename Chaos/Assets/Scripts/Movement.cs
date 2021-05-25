@@ -24,6 +24,7 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //TODO Check for if it is player 1s turn etc
         if (unit.endOfTurn != true && gameManager.activeUnit.GetComponent<Unit>() == unit)
         {
             if (Input.GetKeyUp(KeyCode.Keypad8))

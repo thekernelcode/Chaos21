@@ -8,6 +8,7 @@ public class Unit : MonoBehaviour
     public string unitName;
 
     public bool isPlayer;
+    public bool isPlayerTeam;
 
     public float maxActionPoints = 5f;
     public float maxHealth = 50f;
@@ -23,9 +24,17 @@ public class Unit : MonoBehaviour
 
     public bool endOfTurn;
 
+    GameManager gameManager;
+
+
     // Start is called before the first frame update
     void Start()
     {
+        GameManager gameManager = FindObjectOfType<GameManager>();
+        if (gameManager.isPlayerTurn == true)
+        {
+            isPlayerTeam = true;
+        } 
         unitXPos = (int)transform.position.x;
         unitYPos = (int)transform.position.z;
 

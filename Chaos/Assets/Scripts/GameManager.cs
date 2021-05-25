@@ -11,11 +11,14 @@ public class GameManager : MonoBehaviour
 
     public int turnNumber;
 
+    public bool isPlayerTurn;
+
     // Start is called before the first frame update
     void Start()
     {
         worldTileMap = FindObjectOfType<WorldTileMap>();
         player = FindObjectOfType<Player>();
+        isPlayerTurn = true;
     }
 
     // Update is called once per frame
@@ -44,7 +47,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdateUI()
     {
-        // TODO Add heatlth and other stats
+        // TODO Add health and other stats
        activeUnit.GetComponent<Unit>().actionPointsSlider.value = activeUnit.GetComponent<Unit>().actionPoints / activeUnit.GetComponent<Unit>().maxActionPoints;
     }
 
@@ -54,6 +57,7 @@ public class GameManager : MonoBehaviour
             {
                 for (int x = 0; x < worldTileMap.mapSizeX; x++)
                 {
+                    //TODO Update for all units whether they are active or not/  Would need to loop through all units in game, so potentially a list in the gamemanager needed to track this?
                     Tile t = worldTileMap.getTile(x, y);
                     if (t.xPos == activeUnit.GetComponent<Unit>().unitXPos && t.yPos == activeUnit.GetComponent<Unit>().unitYPos)
                     {

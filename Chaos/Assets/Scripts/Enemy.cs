@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     public WorldTileMap worldTileMap;
     GameManager gameManager;
@@ -13,7 +13,6 @@ public class Player : MonoBehaviour
     public int unitYPos;
 
     public List<GameObject> castableMonsters = new List<GameObject>();
-    public List<GameObject> castMonsters = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -23,11 +22,10 @@ public class Player : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         spellBook = FindObjectOfType<SpellBook>();
 
-        unitXPos = 1;
-        unitYPos = 1;
+        unitXPos = 8;
+        unitYPos = 8;
 
-        
-}
+    }
 
     // Update is called once per frame
     void Update()

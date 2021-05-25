@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SpellBook : MonoBehaviour
 {
-    Player player;
+    public Player player;
 
     public Sprite spellImage;
 
@@ -31,7 +31,8 @@ public class SpellBook : MonoBehaviour
 
     public void spawnMonster()
     {
-        GameObject go = player.castableMonsters[transform.GetSiblingIndex()];
-        Instantiate(go, new Vector3(player.unitXPos + 1, 1, player.unitYPos + 1), Quaternion.identity);
+        GameObject monster = player.castableMonsters[transform.GetSiblingIndex()];
+        Instantiate(monster, new Vector3(player.unitXPos + 1, 1, player.unitYPos + 1), Quaternion.identity);
+        player.castMonsters.Add(monster);
     }
 }
